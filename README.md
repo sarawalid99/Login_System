@@ -13,8 +13,11 @@ Available Operations:
 The application will display a menu with the following options:
 
 1 - Register a new user: Allows you to register a new user.
+
 2 - Login with your account: Allows you to login using your registered credentials.
+
 3 - Change the password: Enables you to change your account password.
+
 0 - Exit: Terminates the application.
 
 - Enter the corresponding option number to perform the desired action.
