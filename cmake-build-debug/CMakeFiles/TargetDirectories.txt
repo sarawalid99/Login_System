@@ -1,0 +1,3 @@
+C:/Users/saraw/CLionProjects/Login_System/cmake-build-debug/CMakeFiles/Login_System.dir
+C:/Users/saraw/CLionProjects/Login_System/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/saraw/CLionProjects/Login_System/cmake-build-debug/CMakeFiles/rebuild_cache.dir

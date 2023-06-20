@@ -1,5 +1,5 @@
-#ifndef CS112-203-2nd-Section10&9-20210495-20211054-20210215-A4-LoginFunctions_H
-#define CS112-203-2nd-Section10&9-20210495-20211054-20210215-A4-LoginFunctions_H
+#ifndef LoginFunctions_H
+#define LoginFunctions_H
 
 #include <Windows.h>
 #include <iostream>
@@ -9,12 +9,12 @@
 #include <conio.h>
 
 using namespace std;
-void rcvr_inf();
-void sv_inf();
-void registeration();
-bool log_in();
+void receiveInfo();
+void saveInfo();
+void registration();
+bool logIn();
 
-void change_pass();
+void changePassword();
 
 struct user{
     string Email ;

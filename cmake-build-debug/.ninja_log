@@ -1,0 +1,6 @@
+# ninja log v5
+97	12443	7089526232979846	CMakeFiles/Login_System.dir/LoginApp.cpp.obj	b4e98fd82c7805d9
+2	21137	7089526320442506	CMakeFiles/Login_System.dir/LoginFunctions.cpp.obj	a7e9ceb3751d0954
+21138	27879	7089526387747983	Login_System.exe	ba4c532f49cfaa99
+17	16292	7089533633827556	CMakeFiles/Login_System.dir/LoginFunctions.cpp.obj	a7e9ceb3751d0954
+16294	22905	7089533700115492	Login_System.exe	ba4c532f49cfaa99

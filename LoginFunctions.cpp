@@ -1,12 +1,10 @@
-#include"CS112-203-2nd-Section10&9-20210495-20211054-20210215-A4-LoginFunctions.h"
-vector <user> user_info;
+#include "LoginFunctions.h"
+vector <user> userInfo;
 fstream file;
 int n = 0 ;
 string decrypt;
 bool check;
-void rcvr_inf()
-{
-
+void receiveInfo(){
     user user1;
     file.open("user information.txt" , ios::in);
 
@@ -17,57 +15,56 @@ void rcvr_inf()
             getline(file,user1.name);
             getline(file,user1.username);
             getline(file,user1.password);
-           for(int i =0;i<user1.password.length();i++){
+           for(int i =0; i < user1.password.length(); i++){
                  if(!(user1.password[i] == '\n'))
                     {user1.password[i] -= 3;}
             }
             decrypt = "";
-            user_info.push_back(user1);
+            userInfo.push_back(user1);
         }
         file.close();
+}
 
-};
 
-
-void sv_inf()
-{   file.open("user information.txt", ios::out);
-    for (int i=0; i < user_info.size() ;i++){
-        for (int j=0; j < user_info[i].Email.size() ;j++)
+void saveInfo(){
+    file.open("user information.txt", ios::out);
+    for (int i=0; i < userInfo.size() ; i++){
+        for (int j=0; j < userInfo[i].Email.size() ; j++)
             {
-                file.put((user_info[i].Email)[j]);
+                file.put((userInfo[i].Email)[j]);
             }
         file.put('\n');
-    for (int j=0; j < user_info[i].phone_number.size() ;j++)
+    for (int j=0; j < userInfo[i].phone_number.size() ; j++)
             {
-                file.put(user_info[i].phone_number[j]);
-            }
-        file.put('\n');
-
-        for (int j=0; j < user_info[i].name.size() ;j++)
-            {
-                file.put(user_info[i].name[j]);
+                file.put(userInfo[i].phone_number[j]);
             }
         file.put('\n');
 
-        for (int j=0; j < user_info[i].username.size() ;j++)
+        for (int j=0; j < userInfo[i].name.size() ; j++)
             {
-                file.put(user_info[i].username[j]);
+                file.put(userInfo[i].name[j]);
             }
         file.put('\n');
 
-        for (int j=0; j < user_info[i].password.size() ;j++)
+        for (int j=0; j < userInfo[i].username.size() ; j++)
             {
-                user_info[i].password[j] += 3;
-                file.put(user_info[i].password[j]);
+                file.put(userInfo[i].username[j]);
             }
-            if(i+1 != user_info.size())
+        file.put('\n');
+
+        for (int j=0; j < userInfo[i].password.size() ; j++)
+            {
+                userInfo[i].password[j] += 3;
+                file.put(userInfo[i].password[j]);
+            }
+            if(i+1 != userInfo.size())
                 {file.put('\n');}
 
     }
     file.close();
 }
 
-void registeration()
+void registration()
 {   int flag = 0;
     int counter = 0;
     user user1;
@@ -98,9 +95,9 @@ void registeration()
         }
 
 
- for (int i=0; i < user_info.size() ;i++)
+ for (int i=0; i < userInfo.size() ; i++)
     {
-       if(user_info[i].Email == mail)
+       if(userInfo[i].Email == mail)
         {   system("cls");
             cout<<"this email already exists please try to use another email\n"<<endl;
             flag = 1;
@@ -123,7 +120,7 @@ void registeration()
     }
    else if(counter == 1)
 {
-cout<<"now please enter your phone number as it's starts with 01 and has 11 degits"<<endl;
+cout << "Please enter your phone number as it's starts with 01 and has 11 degits"<<endl;
 cin >> phn_num;
 if(!(regex_match(phn_num,phn_exp)))
     {   system("cls");
@@ -131,11 +128,11 @@ if(!(regex_match(phn_num,phn_exp)))
 
         continue;
     }
- for (int i=0; i < user_info.size() ;i++)
+ for (int i=0; i < userInfo.size() ; i++)
     {
-       if(user_info[i].phone_number == phn_num)
+       if(userInfo[i].phone_number == phn_num)
         {   system("cls");
-            cout<<"this phone number already exists please try to use another phone number\n"<<endl;
+            cout << "This phone number already exists please try to use another phone number\n"<<endl;
             flag = 1;
             break;
         }
@@ -154,9 +151,10 @@ if(!(regex_match(phn_num,phn_exp)))
         system("cls");
     }
 }
- else if(counter == 2)
-{cout<<"now please enter your name"<<endl;
-cout<<"notice: that names have capital letters at first , length of 4 letters or more and no numbers or special"<<endl;
+ else if(counter == 2){
+     cout<<"Please enter your name\n";
+     cout<<"notice: that names have capital letters at first, "
+      "length of 4 letters or more, no numbers or special characters.\n";
 
             cin.clear();
             cin.sync();
@@ -165,15 +163,15 @@ cout<<"notice: that names have capital letters at first , length of 4 letters or
 
 if(!(regex_match(nm,nm_exp)))
     {   system("cls");
-        cout<< "invalid name form\n"<<endl;
+        cout<< "invalid name form\n";
 
         continue;
     }
- for (int i=0; i < user_info.size() ;i++)
+ for (int i=0; i < userInfo.size() ; i++)
     {
-       if(user_info[i].name == nm)
+       if(userInfo[i].name == nm)
         {   system("cls");
-            cout<<"this name already exists please try to use another name\n"<<endl;
+            cout<<"this name already exists please try to use another name\n";
             flag = 1;
 
             break;
@@ -197,22 +195,22 @@ if(!(regex_match(nm,nm_exp)))
 else if(counter == 3)
 {
 
-    cout <<"now please enter your username you can use (-),(.),(_) and numbers "<<endl;
-    cout <<"you cannot use special characters"<<endl;
+    cout <<"now please enter your username you can use (-),(.),(_) and numbers \n";
+    cout <<"you cannot use special characters\n";
    cin.clear();
             cin.sync();
             getline(cin,usrnm);
     if(!(regex_match(usrnm,usrnm_exp)))
     {   system("cls");
-        cout<< "invalid username form\n"<<endl;
+        cout<< "invalid username form\n";
 
         continue;
     }
- for (int i=0; i < user_info.size() ;i++)
+ for (int i=0; i < userInfo.size() ; i++)
     {
-       if(user_info[i].username == usrnm)
+       if(userInfo[i].username == usrnm)
         {   system("cls");
-            cout<<"this username already exists please try to use another username\n"<<endl;
+            cout<<"this username already exists please try to use another username\n";
             flag = 1;
 
             break;
@@ -235,9 +233,9 @@ else if(counter == 3)
 else if(counter == 4)
 {
 char letter;
-    cout <<"now please enter your password"<<endl;
-    cout <<"password should Capital and small letters and numbers"<<endl;
-    cout <<"you cannot use special characters at all !!"<<endl;
+    cout <<"Please enter your password\n";
+    cout <<"password should Capital and small letters and numbers\n";
+    cout <<"you cannot use special characters at all !!\n";
     while(true)
         {
             letter = _getch();
@@ -260,11 +258,11 @@ char letter;
 
 
         }
-         for (int i=0; i < user_info.size() ;i++)
+         for (int i=0; i < userInfo.size() ; i++)
     {
-       if(user_info[i].password == psswrd)
+       if(userInfo[i].password == psswrd)
         {   system("cls");
-            cout<<"\n this password already exists please try to use another password\n"<<endl;
+            cout<<"\n this password already exists please try to use another password\n";
             flag = 1;
 
             break;
@@ -274,7 +272,7 @@ char letter;
 
     if(!(regex_match(psswrd,psswrd_exp)))
     {   system("cls");
-        cout<<"\nthis password is weak please follow the strong password instructions\n"<<endl;
+        cout<<"\nthis password is weak please follow the strong password instructions\n";
         psswrd = "";
 
         continue;
@@ -283,7 +281,7 @@ char letter;
 
 
 
-    cout << "\now please enter the password confirmation: " <<endl;
+    cout << "\now please enter the password confirmation: ";
       while(true)
         {
 
@@ -311,7 +309,7 @@ char letter;
 
     if(psswrd != psswrd_cnfrm)
         {   system("cls");
-            cout <<"\nthe two passwords are not identical please try again\n"<<endl;
+            cout <<"\nthe two passwords are not identical please try again\n";
             psswrd_cnfrm = "";
             psswrd = "";
 
@@ -335,8 +333,8 @@ char letter;
 }
 if(counter == 5)
 {
-    user_info.push_back(user1);
-    cout <<"\nCongratulations you've successfully registerd !!" <<endl;
+    userInfo.push_back(user1);
+    cout <<"\nCongratulations you've successfully registerd !!";
     for(int i=0 ; i < 1000000; i++){}
     system("cls");
     break;
@@ -345,7 +343,7 @@ if(counter == 5)
 }
 }
 
-bool log_in(){
+bool logIn(){
     int flag1 = 0 , flag2 = 0 ;
     char letter;
     string user_name , psswrd;
@@ -376,41 +374,39 @@ bool log_in(){
 
         }
         cout << endl;
-    for (int i=0; i < user_info.size() ;i++)
+    for (int i=0; i < userInfo.size() ; i++)
     {
-        if (user_info[i].username == user_name)
+        if (userInfo[i].username == user_name)
         {
             flag1 = 1;
-            if (user_info[i].password== psswrd)
+            if (userInfo[i].password == psswrd)
             {
                 flag2 = 1;
                 n = i;
                 system("cls");
                 break;
             }
-
-//break;
         }
     }
     if (flag1 == 0)
     {system("cls");
-        cout << "Wrong username , Try again "<< endl;
+        cout << "Wrong username , Try again \n";
         return false ;
     }
     else if (flag2 == 0 )
     {system("cls");
-        cout << "Wrong password , Try again " << endl;
+        cout << "Wrong password , Try again \n";
         return false;
     }
 
     else
        {system("cls");
-         cout << "Successful login , welcome " + user_info[n].name << endl;
+         cout << "Successful login , welcome " + userInfo[n].name + "\n";
          return true ;
        }
 }
 
-void change_pass(){
+void changePassword(){
     int flag1 = 0;
     regex psswrd_exp ("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+{8,}");
     char letter;
@@ -418,15 +414,15 @@ void change_pass(){
 
     if(!check)
     {
-        cout << "You have to log in to change your password "<< endl;
+        cout << "You have to log in to change your password \n";
          for (int i =  0 ; i < 3 ; i++){
-        if (log_in())
+        if (logIn())
         {
             break ;
         }
         else if (i == 2)
         {system("cls");
-            cout << "Failed login"<<endl;
+            cout << "Failed login\n";
 
 
             return ;
@@ -457,7 +453,7 @@ void change_pass(){
                 cout<<"*";
             }
         }
-        if (user_info[n].password != psswrd)
+        if (userInfo[n].password != psswrd)
         {system("cls");
             cout << " \n Wrong password " << endl;
 
@@ -475,8 +471,8 @@ void change_pass(){
     }
     /****************************************************************************/
   for (int i = 0 ; i <3 ; i++){
-     cout <<"\npassword should Capital and small letters and numbers"<<endl;
-    cout <<"you cannot use special characters at all !!"<<endl;
+     cout <<"\npassword should be Capital and small letters and numbers\n";
+    cout <<"you cannot use special characters at all !!\n";
      cout << "\n Enter new password : ";
 
      while(true)
@@ -558,8 +554,8 @@ void change_pass(){
 
 }
 
-    user_info[n].password = new_psswrd;
+    userInfo[n].password = new_psswrd;
     system("cls");
-    cout<<"password changed successfully!!"<<endl;
+    cout<<"password changed successfully!!\n";
 
 }
